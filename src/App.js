@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+import "./App.css";
+import QuoteCard from "./QuoteCard";
 
 function App() {
+  const [quotes, setQuotesData] = useState([]);
+  useEffect(() => {
+    const fetchQuote = async () => {
+      try {
+        const response = await axios.get("https://type.fit/api/quotes");
+        console.log(response.data);
+        setQuotesData(response.data);
+      } catch (error) {
+        console.error("Error fetching quote:", error);
+      }
+    };
+
+    fetchQuote();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+		<div className="container">
+			<div className="row">
+				<div className="col-md-12">
+					<h2 className="mt-2">Quotes</h2>
+				</div>
+			</div>
+			<div className="row">
+			{quotes.length > 0 ? (
+				<>
+				{quotes.map((quote) => (
+					<QuoteCard quote={quote} />
+				))}
+				</>
+			) : (
+				<p>Loading...</p>
+			)}
+			</div>
+		</div>
+     
+
+     
     </div>
   );
 }
