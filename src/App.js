@@ -10,7 +10,6 @@ function App() {
     const fetchQuote = async () => {
       try {
         const response = await axios.get("https://type.fit/api/quotes");
-        console.log(response.data);
         setQuotesData(response.data);
       } catch (error) {
         console.error("Error fetching quote:", error);
