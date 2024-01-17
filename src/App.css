@@ -1,0 +1,21 @@
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+.quoteCard{
+  opacity: 0;
+  animation: slideInLeft 0.5s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.card {
+  border-left: 3px solid #dc3545 !important;
+}

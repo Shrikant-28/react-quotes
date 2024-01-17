@@ -30,8 +30,8 @@ function App() {
 			<div className="row">
 			{quotes.length > 0 ? (
 				<>
-				{quotes.map((quote) => (
-					<QuoteCard quote={quote} />
+				{quotes.map((quote, index) => (
+					<QuoteCard key={index} quote={quote} />
 				))}
 				</>
 			) : (
@@ -39,9 +39,6 @@ function App() {
 			)}
 			</div>
 		</div>
-     
-
-     
     </div>
   );
 }
